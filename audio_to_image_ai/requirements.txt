@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-multipart
+openai-whisper
+langchain-community
+langchain-ollama
+diffusers
+transformers
+torch
+accelerate
+pillow
+soundfile
+numpy
