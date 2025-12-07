@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Art Chat</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="header">
+            <h2>🤖 Art Generator Bot</h2>
+        </div>
+
+        <div class="messages" id="chat">
+            <div class="bubble ai">
+                Hi! Tap the microphone to record your idea (or upload audio).
+                I'll create a prompt for you to approve first.
+            </div>
+        </div>
+
+        <div class="controls">
+            <!-- Main Mic Button -->
+            <input type="file" id="audioInput" accept="audio/*" onchange="handleAudioUpload()">
+            <button class="btn btn-mic" id="recordBtn"
+                onclick="document.getElementById('audioInput').click()">🎙️</button>
+
+            <!-- Action Bar for Approval -->
+            <div class="action-bar" id="actionBar">
+                <button class="btn btn-secondary" onclick="resetProcess()">Record Again</button>
+                <button class="btn btn-secondary" onclick="retryPrompt()">Retry Prompt</button>
+                <button class="btn btn-primary" onclick="confirmGeneration()">🚀 GO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to the JS file -->
+    <script src="/static/js/script.js"></script>
+
+</body>
+
+</html>
