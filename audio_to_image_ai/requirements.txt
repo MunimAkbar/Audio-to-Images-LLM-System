@@ -11,3 +11,4 @@ accelerate
 pillow
 soundfile
 numpy
+jinja2

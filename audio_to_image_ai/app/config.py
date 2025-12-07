@@ -1,30 +1,27 @@
 import os
-from pathlib import Path
 import torch
 
 class Config:
     # Base Paths
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    AUDIO_UPLOAD_DIR = BASE_DIR / "app" / "audio" / "uploads"
-    OUTPUT_DIR = BASE_DIR / "data" / "processed"
-
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATA_DIR = os.path.join(BASE_DIR, "data")
+    OUTPUT_DIR = os.path.join(DATA_DIR, "images")
+    AUDIO_UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")
+    STATIC_DIR = os.path.join(BASE_DIR, "app", "static")
+    
     # Create directories if they don't exist
-    AUDIO_UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    os.makedirs(DATA_DIR, exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(AUDIO_UPLOAD_DIR, exist_ok=True)
+    
+    # Device
+    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
     # Model Settings
-    DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-    
-    # STT Settings
-    WHISPER_MODEL_SIZE = "base"  # Options: tiny, base, small, medium, large
-
-    # LLM Settings
-    OLLAMA_MODEL = "llama3:8b"
+    WHISPER_MODEL_SIZE = "base"
+    OLLAMA_MODEL = "llama3.2"
     OLLAMA_BASE_URL = "http://localhost:11434"
-
-    # Image Gen Settings
-    SD_MODEL_ID = "runwayml/stable-diffusion-v1-5" # Or any other local/huggingface model
-    # For better performance on 8GB VRAM, we might want to use fp16
-    USE_FP16 = True
+    SD_MODEL_ID = "runwayml/stable-diffusion-v1-5"
+    TORCH_DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
 
 config = Config()
