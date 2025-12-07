@@ -12,7 +12,7 @@ This project is an AI-powered application that converts audio input into generat
 ## Project Structure
 
 ```
-audio_to_image_ai/
+Audio-to-Images-LLM-System/
 ├── app/
 │   ├── api/            # API routes and endpoints
 │   ├── audio/          # Storage for uploaded audio
